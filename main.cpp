@@ -97,7 +97,7 @@ vector<string> infix2postfix(string infix){
             } else{
                 string tmp = "";
                 tmp += infix[0];
-                while (priority(tmp) > priority(symbol.back())){ //优先级不高
+                while (priority(tmp) >= priority(symbol.back())){ //优先级不高
                     string tmp2 = symbol.back();
                     postfix.push_back(tmp2);
                     symbol.pop_back();
@@ -164,7 +164,7 @@ Matrix cal(vector<string> postfix){
                 args.pop_back();
                 string first = args.back();
                 args.pop_back();
-                if(regex_match(first,regex("[a-zA-Z]*"))){ //矩阵*矩阵
+                if(regex_match(first,regex(".*[a-zA-Z]+.*"))){ //矩阵*矩阵
                     Matrix m1 = map_M.find(first)->second;
                     Matrix m2 = map_M.find(second)->second;
                     top = m1 * m2;
